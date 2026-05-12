@@ -155,6 +155,10 @@
                         <input type="range" id="g-line-height" data-bind="global.lineHeight" value="1.3" min="0.5" max="3" step="0.1">
                     </div>
                     <div class="form-group">
+                        <label style="display: flex; justify-content: space-between;">Opacidade <span id="g-opacity-val">100</span>%</label>
+                        <input type="range" id="g-opacity" data-bind="global.opacity" value="100" min="0" max="100" step="1">
+                    </div>
+                    <div class="form-group">
                         <label>Alinhamento Horizontal</label>
                         <select id="g-align-h" data-bind="global.alignH">
                             <option value="left">Esquerda</option>
@@ -236,6 +240,45 @@
 {Aleluia} ~Amém~</textarea>
                 </div>
                 <button id="btn-update-text" class="btn btn-primary w-full">Enviar Texto Manual</button>
+            </section>
+
+            <!-- Text Box Style -->
+            <section class="glass-panel module">
+                <div class="module-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="margin: 0;">Caixa de Texto</h2>
+                    <label class="switch switch-small">
+                        <input type="checkbox" data-bind="global.box.active">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="grid-2-col">
+                    <div class="form-group span-2" style="grid-column: span 2;">
+                        <label>Tipo de Caixa</label>
+                        <select data-bind="global.box.type">
+                            <option value="block">Bloco Inteiro</option>
+                            <option value="line">Por Linha (Destacado)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cor do Fundo</label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" data-bind="global.box.color" value="#000000">
+                            <span class="color-value">#000000</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; justify-content: space-between;">Opacidade Fundo <span><span id="g-box-opacity-val">50</span>%</span></label>
+                        <input type="range" id="g-box-opacity" data-bind="global.box.opacity" value="50" min="0" max="100" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; justify-content: space-between;">Preenchimento <span><span id="g-box-padding-val">10</span>px</span></label>
+                        <input type="range" id="g-box-padding" data-bind="global.box.padding" value="10" min="0" max="1000" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; justify-content: space-between;">Arredondamento <span><span id="g-box-radius-val">8</span>px</span></label>
+                        <input type="range" id="g-box-radius" data-bind="global.box.radius" value="8" min="0" max="50" step="1">
+                    </div>
+                </div>
             </section>
 
             <!-- Special Styles -->

@@ -458,7 +458,7 @@ input[type="color"]::-webkit-color-swatch {
     border-radius: 6px;
 }
 
-.switch-small .switch {
+.switch.switch-small {
     width: 34px;
     height: 20px;
 }

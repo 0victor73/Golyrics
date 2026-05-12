@@ -19,6 +19,10 @@
     --g-m-bottom: 8vh;
     --g-m-left: 4vw;
     --g-m-right: 4vw;
+    --g-opacity: 1;
+    --g-box-bg: transparent;
+    --g-box-padding: 0px;
+    --g-box-radius: 0px;
 
     /* Special Style 1 (*) */
     --s1-color: #facc15;
@@ -98,12 +102,28 @@ html {
     line-height: var(--g-line-height);
     white-space: pre-wrap;
     max-width: 90vw;
+    width: fit-content; /* Faz a caixa envolver apenas o texto */
+    
+    /* Box Styles */
+    background: var(--g-box-bg-block, transparent);
+    padding: var(--g-box-padding-block, 0);
+    border-radius: var(--g-box-radius, 0);
 
     /* Transition for smooth style changes */
     transition: all 0.3s ease;
 
-    /* Hide initially */
-    opacity: 0;
+    opacity: 0; 
+}
+
+/* Helper para Caixa por Linha */
+.line-wrapper {
+    background: var(--g-box-bg-line, transparent);
+    padding: var(--g-box-padding-line-v, 0) var(--g-box-padding-line-h, 0);
+    border-radius: var(--g-box-radius, 0);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    line-height: calc(var(--g-line-height) + 0.2); /* Pequeno ajuste para as caixas não colarem */
 }
 
 /* Styles para os marcadores */
@@ -187,13 +207,13 @@ html {
     }
 
     to {
-        opacity: 1;
+        opacity: var(--g-opacity);
     }
 }
 
 @keyframes fadeOut {
     from {
-        opacity: 1;
+        opacity: var(--g-opacity);
     }
 
     to {
@@ -208,14 +228,14 @@ html {
     }
 
     to {
-        opacity: 1;
+        opacity: var(--g-opacity);
         transform: translateY(0);
     }
 }
 
 @keyframes slideUpOut {
     from {
-        opacity: 1;
+        opacity: var(--g-opacity);
         transform: translateY(0);
     }
 
@@ -232,14 +252,14 @@ html {
     }
 
     to {
-        opacity: 1;
+        opacity: var(--g-opacity);
         transform: translateY(0);
     }
 }
 
 @keyframes slideDownOut {
     from {
-        opacity: 1;
+        opacity: var(--g-opacity);
         transform: translateY(0);
     }
 
@@ -256,14 +276,14 @@ html {
     }
 
     to {
-        opacity: 1;
+        opacity: var(--g-opacity);
         transform: scale(1);
     }
 }
 
 @keyframes zoomOut {
     from {
-        opacity: 1;
+        opacity: var(--g-opacity);
         transform: scale(1);
     }
 
@@ -281,7 +301,7 @@ html {
     }
 
     to {
-        opacity: 1;
+        opacity: var(--g-opacity);
         filter: blur(0);
         transform: scale(1);
     }
@@ -289,7 +309,7 @@ html {
 
 @keyframes blurOut {
     from {
-        opacity: 1;
+        opacity: var(--g-opacity);
         filter: blur(0);
         transform: scale(1);
     }

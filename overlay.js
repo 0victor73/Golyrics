@@ -4,6 +4,21 @@ const lyricsContainer = document.getElementById('lyrics-container');
 let currentText = '';
 let currentIsActive = false;
 
+function hexToRgba(hex, alpha) {
+    if (!hex) return 'transparent';
+    let r = 0, g = 0, b = 0;
+    if (hex.length == 4) {
+        r = parseInt(hex[1] + hex[1], 16);
+        g = parseInt(hex[2] + hex[2], 16);
+        b = parseInt(hex[3] + hex[3], 16);
+    } else if (hex.length == 7) {
+        r = parseInt(hex.substring(1, 3), 16);
+        g = parseInt(hex.substring(3, 5), 16);
+        b = parseInt(hex.substring(5, 7), 16);
+    }
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 channel.onmessage = (event) => {
     const data = event.data;
     applyStyles(data);
@@ -49,11 +64,39 @@ function applyStyles(data) {
     root.style.setProperty('--g-stroke-c', data.global.strokeColor);
     root.style.setProperty('--g-letter-spacing', `${data.global.letterSpacing}px`);
     root.style.setProperty('--g-line-height', data.global.lineHeight);
+    root.style.setProperty('--g-opacity', data.global.opacity / 100);
     
     // Global Formatting
     root.style.setProperty('--g-weight', data.global.bold ? '700' : '400');
     root.style.setProperty('--g-transform', data.global.uppercase ? 'uppercase' : 'none');
     root.style.setProperty('--g-style', data.global.italic ? 'italic' : 'normal');
+    
+    // Box (Caixa de Texto)
+    if (data.global.box && data.global.box.active) {
+        const bg = hexToRgba(data.global.box.color, data.global.box.opacity / 100);
+        root.style.setProperty('--g-box-radius', `${data.global.box.radius}px`);
+        
+        if (data.global.box.type === 'block') {
+            root.style.setProperty('--g-box-bg-block', bg);
+            root.style.setProperty('--g-box-padding-block', `${data.global.box.padding}px`);
+            root.style.setProperty('--g-box-bg-line', 'transparent');
+            root.style.setProperty('--g-box-padding-line-v', '0');
+            root.style.setProperty('--g-box-padding-line-h', '0');
+        } else {
+            root.style.setProperty('--g-box-bg-block', 'transparent');
+            root.style.setProperty('--g-box-padding-block', '0');
+            root.style.setProperty('--g-box-bg-line', bg);
+            root.style.setProperty('--g-box-padding-line-v', `${data.global.box.padding * 0.2}px`);
+            root.style.setProperty('--g-box-padding-line-h', `${data.global.box.padding}px`);
+        }
+    } else {
+        root.style.setProperty('--g-box-bg-block', 'transparent');
+        root.style.setProperty('--g-box-bg-line', 'transparent');
+        root.style.setProperty('--g-box-padding-block', '0');
+        root.style.setProperty('--g-box-padding-line-v', '0');
+        root.style.setProperty('--g-box-padding-line-h', '0');
+        root.style.setProperty('--g-box-radius', '0');
+    }
     
     const getDecor = (u, s) => {
         let decors = [];
@@ -141,39 +184,35 @@ function updateDisplay(data) {
         if (currentText !== '') {
             // Animate out old text, then animate in new text
             triggerExit(data.animations.exit, () => {
-                renderText(data.text);
+                renderText(data.text, data.global.box);
                 triggerEntry(data.animations.entry);
             });
         } else {
             // First time showing text
-            renderText(data.text);
+            renderText(data.text, data.global.box);
             triggerEntry(data.animations.entry);
         }
     } else {
         // Text is same, just ensure it's rendered in case of first load with active=true
         if (lyricsContainer.innerHTML === '') {
-            renderText(data.text);
+            renderText(data.text, data.global.box);
             triggerEntry(data.animations.entry);
         }
     }
 }
 
-function renderText(rawText) {
+function renderText(rawText, boxData) {
     currentText = rawText;
-    
-    // Convert newlines to breaks if needed, though white-space: pre-wrap handles it
-    // But since we are injecting HTML spans, pre-wrap handles text perfectly.
-    
     let html = rawText;
     
-    // Regex for Style 1: *texto* -> <span class="style-1">texto</span>
+    // Regex style replacements...
     html = html.replace(/\*(.*?)\*/g, '<span class="style-1">$1</span>');
-    
-    // Regex for Style 2: {texto} -> <span class="style-2">texto</span>
     html = html.replace(/\{(.*?)\}/g, '<span class="style-2">$1</span>');
-    
-    // Regex for Style 3: ~texto~ -> <span class="style-3">texto</span>
     html = html.replace(/~(.*?)~/g, '<span class="style-3">$1</span>');
+    
+    if (boxData && boxData.active && boxData.type === 'line') {
+        html = `<span class="line-wrapper">${html}</span>`;
+    }
 
     lyricsContainer.innerHTML = html;
 }

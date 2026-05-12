@@ -14,6 +14,15 @@ const state = {
         strokeColor: "#000000",
         letterSpacing: 0,
         lineHeight: 1.3,
+        opacity: 100,
+        box: {
+            active: false,
+            type: "block",
+            color: "#000000",
+            opacity: 50,
+            padding: 10,
+            radius: 8
+        },
         margin: { top: 5, bottom: 8, left: 4, right: 4, show: false },
         alignH: "center",
         alignV: "bottom",
