@@ -71,6 +71,14 @@ function applyStyles(data) {
     root.style.setProperty('--g-transform', data.global.uppercase ? 'uppercase' : 'none');
     root.style.setProperty('--g-style', data.global.italic ? 'italic' : 'normal');
     
+    // Animation Duration
+    if (data.animations && data.animations.duration) {
+        root.style.setProperty('--anim-duration', `${data.animations.duration}s`);
+        window.currentAnimDuration = data.animations.duration;
+    } else {
+        window.currentAnimDuration = 0.6;
+    }
+
     // Box (Caixa de Texto)
     if (data.global.box && data.global.box.active) {
         const bg = hexToRgba(data.global.box.color, data.global.box.opacity / 100);
@@ -224,8 +232,10 @@ function triggerEntry(animName) {
 function triggerExit(animName, callback) {
     lyricsContainer.className = `lyrics-container exit-${animName}`;
     
-    // Wait for animation to finish. Most are 0.5s or 0.6s. We use 600ms as safe fallback.
+    // Wait for animation to finish.
+    // If not specified, we use 600ms as safe fallback.
+    const durationMs = window.currentAnimDuration ? (window.currentAnimDuration * 1000) : 600;
     setTimeout(() => {
         if (callback) callback();
-    }, 600);
+    }, durationMs);
 }

@@ -159,44 +159,44 @@ html {
 
 /* Animations - Entry */
 .entry-fade {
-    animation: fadeIn 0.6s forwards ease-out;
+    animation: fadeIn var(--anim-duration, 0.6s) forwards ease-out;
 }
 
 .entry-slide-up {
-    animation: slideUpIn 0.6s forwards cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slideUpIn var(--anim-duration, 0.6s) forwards cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .entry-slide-down {
-    animation: slideDownIn 0.6s forwards cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slideDownIn var(--anim-duration, 0.6s) forwards cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .entry-zoom-in {
-    animation: zoomIn 0.6s forwards cubic-bezier(0.16, 1, 0.3, 1);
+    animation: zoomIn var(--anim-duration, 0.6s) forwards cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .entry-blur-in {
-    animation: blurIn 0.8s forwards ease-out;
+    animation: blurIn var(--anim-duration, 0.8s) forwards ease-out;
 }
 
 /* Animations - Exit */
 .exit-fade {
-    animation: fadeOut 0.5s forwards ease-in;
+    animation: fadeOut var(--anim-duration, 0.5s) forwards ease-in;
 }
 
 .exit-slide-up {
-    animation: slideUpOut 0.5s forwards ease-in;
+    animation: slideUpOut var(--anim-duration, 0.5s) forwards ease-in;
 }
 
 .exit-slide-down {
-    animation: slideDownOut 0.5s forwards ease-in;
+    animation: slideDownOut var(--anim-duration, 0.5s) forwards ease-in;
 }
 
 .exit-zoom-out {
-    animation: zoomOut 0.5s forwards ease-in;
+    animation: zoomOut var(--anim-duration, 0.5s) forwards ease-in;
 }
 
 .exit-blur-out {
-    animation: blurOut 0.6s forwards ease-in;
+    animation: blurOut var(--anim-duration, 0.6s) forwards ease-in;
 }
 
 

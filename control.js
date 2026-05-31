@@ -34,7 +34,8 @@ const state = {
     },
     animations: {
         entry: "fade",
-        exit: "fade"
+        exit: "fade",
+        duration: 0.6
     },
     special: {
         style1: { color: "#facc15", fontFamily: "Outfit", inheritFormat: false, uppercase: false, bold: true, italic: false, underline: false, strikethrough: false },
