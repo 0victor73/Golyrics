@@ -4,7 +4,7 @@ let ws = null;
 // Initial State
 const state = {
     active: false,
-    text: "O amor do Senhor\n*É maravilhoso*\n{Aleluia} ~Amém~",
+    text: " ",
     global: {
         fontFamily: "Inter",
         fontSize: 60,
@@ -121,7 +121,7 @@ document.querySelectorAll('[data-bind]').forEach(el => {
 // Themes Logic
 function loadThemesList() {
     const select = document.getElementById('theme-select');
-    select.innerHTML = '<option value="">-- Selecione um tema --</option>';
+    select.innerHTML = '<option value="">Selecione um tema</option>';
     try {
         const saved = JSON.parse(localStorage.getItem('holyrics_themes')) || {};
         for (const name in saved) {
@@ -270,7 +270,7 @@ btnToggle.addEventListener('change', () => {
         } else if (url.startsWith('http://') || url.startsWith('https://')) {
             startPolling(url);
         } else {
-            console.error("URL inválida. Deve começar com ws:// ou http://");
+            console.error("URL inválida. Deve começar com http://");
             btnToggle.checked = false;
         }
         
@@ -377,11 +377,13 @@ function handleIncomingData(rawData) {
     try {
         const payload = JSON.parse(rawData);
         
-        if (payload.map && payload.map.text) {
+        if (payload.type === "empty") {
+            newText = "";
+        } else if (payload.map && typeof payload.map.text === 'string') {
             newText = payload.map.text;
-        } else if (payload.text) {
+        } else if (typeof payload.text === 'string') {
             newText = payload.text;
-        } else if (payload.content) {
+        } else if (typeof payload.content === 'string') {
             newText = payload.content;
         }
     } catch (e) {

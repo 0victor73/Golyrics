@@ -173,8 +173,8 @@ function applyStyles(data) {
 }
 
 function updateDisplay(data) {
-    if (!data.active) {
-        if (currentIsActive) {
+    if (!data.active || !data.text || data.text.trim() === '') {
+        if (currentIsActive || currentText !== '') {
             // Needs to hide
             triggerExit(data.animations.exit, () => {
                 lyricsContainer.innerHTML = '';
