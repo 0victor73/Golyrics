@@ -164,7 +164,7 @@ Este projeto é de uso livre e pessoal. Sinta-se à vontade para adaptar e distr
 
 ---
 
-Me siga no instagram @https.victor073
+Me siga no instagram @https.victor073  
 Doe para o projeto no pix: victorgabrielferreirapinto@gmail.com
 
 <div align="center">
