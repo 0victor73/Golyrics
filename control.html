@@ -27,7 +27,8 @@
 
             <div class="connection-group">
                 <div class="input-wrapper">
-                    <input type="text" id="holyrics-url" value="ws://localhost:8080" placeholder="ws://localhost:8080">
+                    <input type="text" id="holyrics-url" value="Cole aqui a URL do Holyrics"
+                        placeholder="ws://localhost:8080">
                     <span class="status-indicator disconnected" id="conn-status"></span>
                 </div>
             </div>
@@ -47,15 +48,18 @@
                             <select id="theme-select" style="flex: 1;">
                                 <option value=""> Padrão </option>
                             </select>
-                            <button id="btn-load-theme" class="btn btn-primary" style="padding: 0.5rem 1rem;">Carregar</button>
-                            <button id="btn-delete-theme" class="btn btn-danger" style="padding: 0.5rem 1rem;">Apagar</button>
+                            <button id="btn-load-theme" class="btn btn-primary"
+                                style="padding: 0.5rem 1rem;">Carregar</button>
+                            <button id="btn-delete-theme" class="btn btn-danger"
+                                style="padding: 0.5rem 1rem;">Apagar</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Salvar Tema Atual</label>
                         <div style="display: flex; gap: 0.5rem;">
                             <input type="text" id="theme-name" placeholder="Nome do novo tema" style="flex: 1;">
-                            <button id="btn-save-theme" class="btn btn-success" style="padding: 0.5rem 1rem;">Salvar</button>
+                            <button id="btn-save-theme" class="btn btn-success"
+                                style="padding: 0.5rem 1rem;">Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -68,13 +72,17 @@
                     <label class="btn-icon" title="Visualizar Margens no OBS" style="cursor: pointer; display: flex;">
                         <input type="checkbox" data-bind="global.margin.show" style="display: none;">
                         <!-- Olho Aberto (Margem Visível) -->
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon eye-open">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon eye-open">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                             <circle cx="12" cy="12" r="3"></circle>
                         </svg>
                         <!-- Olho Fechado/Riscado (Margem Invisível) -->
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon eye-closed">
-                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon eye-closed">
+                            <path
+                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                            </path>
                             <line x1="1" y1="1" x2="23" y2="23"></line>
                         </svg>
                     </label>
@@ -88,7 +96,8 @@
                     </div>
                     <div class="m-center">
                         <div class="m-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                                 <path d="M3 9h18"></path>
                                 <path d="M9 21V9"></path>
@@ -113,7 +122,8 @@
                 <div class="grid-2-col">
                     <div class="form-group">
                         <label>Fonte Principal</label>
-                        <input type="text" id="g-font" data-bind="global.fontFamily" value="Inter" placeholder="Ex: Inter, Roboto, Oswald">
+                        <input type="text" id="g-font" data-bind="global.fontFamily" value="Inter"
+                            placeholder="Ex: Inter, Roboto, Oswald">
                     </div>
                     <div class="form-group">
                         <label>Tamanho (px)</label>
@@ -136,8 +146,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label style="display: flex; justify-content: space-between;">Espessura do Contorno <span id="g-stroke-w-val">0</span></label>
-                        <input type="range" id="g-stroke-w" data-bind="global.strokeWidth" value="0" min="0" max="20" step="1">
+                        <label style="display: flex; justify-content: space-between;">Espessura do Contorno <span
+                                id="g-stroke-w-val">0</span></label>
+                        <input type="range" id="g-stroke-w" data-bind="global.strokeWidth" value="0" min="0" max="20"
+                            step="1">
                     </div>
                     <div class="form-group">
                         <label>Cor do Contorno</label>
@@ -147,16 +159,22 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="display: flex; justify-content: space-between;">Espaçamento (px) <span id="g-letter-spacing-val">0</span></label>
-                        <input type="range" id="g-letter-spacing" data-bind="global.letterSpacing" value="0" min="-10" max="50" step="0.5">
+                        <label style="display: flex; justify-content: space-between;">Espaçamento (px) <span
+                                id="g-letter-spacing-val">0</span></label>
+                        <input type="range" id="g-letter-spacing" data-bind="global.letterSpacing" value="0" min="-10"
+                            max="50" step="0.5">
                     </div>
                     <div class="form-group">
-                        <label style="display: flex; justify-content: space-between;">Altura da Linha <span id="g-line-height-val">1.3</span></label>
-                        <input type="range" id="g-line-height" data-bind="global.lineHeight" value="1.3" min="0.5" max="3" step="0.1">
+                        <label style="display: flex; justify-content: space-between;">Altura da Linha <span
+                                id="g-line-height-val">1.3</span></label>
+                        <input type="range" id="g-line-height" data-bind="global.lineHeight" value="1.3" min="0.5"
+                            max="3" step="0.1">
                     </div>
                     <div class="form-group">
-                        <label style="display: flex; justify-content: space-between;">Opacidade <span id="g-opacity-val">100</span>%</label>
-                        <input type="range" id="g-opacity" data-bind="global.opacity" value="100" min="0" max="100" step="1">
+                        <label style="display: flex; justify-content: space-between;">Opacidade <span
+                                id="g-opacity-val">100</span>%</label>
+                        <input type="range" id="g-opacity" data-bind="global.opacity" value="100" min="0" max="100"
+                            step="1">
                     </div>
                     <div class="form-group">
                         <label>Alinhamento Horizontal</label>
@@ -229,8 +247,10 @@
                         </select>
                     </div>
                     <div class="form-group span-2" style="grid-column: span 2;">
-                        <label style="display: flex; justify-content: space-between;">Duração da Animação <span><span id="anim-duration-val">0.6</span>s</span></label>
-                        <input type="range" id="anim-duration" data-bind="animations.duration" value="0.6" min="0.1" max="3" step="0.1">
+                        <label style="display: flex; justify-content: space-between;">Duração da Animação <span><span
+                                    id="anim-duration-val">0.6</span>s</span></label>
+                        <input type="range" id="anim-duration" data-bind="animations.duration" value="0.6" min="0.1"
+                            max="3" step="0.1">
                     </div>
                 </div>
 
@@ -269,16 +289,22 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="display: flex; justify-content: space-between;">Opacidade Fundo <span><span id="g-box-opacity-val">50</span>%</span></label>
-                        <input type="range" id="g-box-opacity" data-bind="global.box.opacity" value="50" min="0" max="100" step="1">
+                        <label style="display: flex; justify-content: space-between;">Opacidade Fundo <span><span
+                                    id="g-box-opacity-val">50</span>%</span></label>
+                        <input type="range" id="g-box-opacity" data-bind="global.box.opacity" value="50" min="0"
+                            max="100" step="1">
                     </div>
                     <div class="form-group">
-                        <label style="display: flex; justify-content: space-between;">Preenchimento <span><span id="g-box-padding-val">10</span>px</span></label>
-                        <input type="range" id="g-box-padding" data-bind="global.box.padding" value="10" min="0" max="1000" step="1">
+                        <label style="display: flex; justify-content: space-between;">Preenchimento <span><span
+                                    id="g-box-padding-val">10</span>px</span></label>
+                        <input type="range" id="g-box-padding" data-bind="global.box.padding" value="10" min="0"
+                            max="1000" step="1">
                     </div>
                     <div class="form-group">
-                        <label style="display: flex; justify-content: space-between;">Arredondamento <span><span id="g-box-radius-val">8</span>px</span></label>
-                        <input type="range" id="g-box-radius" data-bind="global.box.radius" value="8" min="0" max="50" step="1">
+                        <label style="display: flex; justify-content: space-between;">Arredondamento <span><span
+                                    id="g-box-radius-val">8</span>px</span></label>
+                        <input type="range" id="g-box-radius" data-bind="global.box.radius" value="8" min="0" max="50"
+                            step="1">
                     </div>
                 </div>
             </section>
@@ -301,17 +327,21 @@
                         </div>
                         <div class="form-group">
                             <label>Fonte</label>
-                            <input type="text" id="s1-font" data-bind="special.style1.fontFamily" value="Outfit" placeholder="Ex: Oswald (ou deixe em branco)">
+                            <input type="text" id="s1-font" data-bind="special.style1.fontFamily" value="Outfit"
+                                placeholder="Ex: Oswald (ou deixe em branco)">
                         </div>
                         <div class="form-group">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                                 <label style="margin: 0;">Formatação Especial</label>
                                 <div class="switch-small" style="display: flex; align-items: center;">
                                     <label class="switch" style="width: 34px; height: 20px;">
                                         <input type="checkbox" data-bind="special.style1.inheritFormat">
                                         <span class="slider round" style="border-radius: 20px;"></span>
                                     </label>
-                                    <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: 0.4rem;">Herdar Global</span>
+                                    <span
+                                        style="font-size: 0.8rem; color: var(--text-muted); margin-left: 0.4rem;">Herdar
+                                        Global</span>
                                 </div>
                             </div>
                             <div class="format-toolbar format-options" id="format-options-s1">
@@ -350,17 +380,21 @@
                         </div>
                         <div class="form-group">
                             <label>Fonte</label>
-                            <input type="text" id="s2-font" data-bind="special.style2.fontFamily" value="" placeholder="Ex: Roboto (ou deixe em branco)">
+                            <input type="text" id="s2-font" data-bind="special.style2.fontFamily" value=""
+                                placeholder="Ex: Roboto (ou deixe em branco)">
                         </div>
                         <div class="form-group">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                                 <label style="margin: 0;">Formatação Especial</label>
                                 <div class="switch-small" style="display: flex; align-items: center;">
                                     <label class="switch" style="width: 34px; height: 20px;">
                                         <input type="checkbox" data-bind="special.style2.inheritFormat" checked>
                                         <span class="slider round" style="border-radius: 20px;"></span>
                                     </label>
-                                    <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: 0.4rem;">Herdar Global</span>
+                                    <span
+                                        style="font-size: 0.8rem; color: var(--text-muted); margin-left: 0.4rem;">Herdar
+                                        Global</span>
                                 </div>
                             </div>
                             <div class="format-toolbar format-options" id="format-options-s2">
@@ -399,17 +433,21 @@
                         </div>
                         <div class="form-group">
                             <label>Fonte</label>
-                            <input type="text" id="s3-font" data-bind="special.style3.fontFamily" value="" placeholder="Ex: Montserrat (ou deixe em branco)">
+                            <input type="text" id="s3-font" data-bind="special.style3.fontFamily" value=""
+                                placeholder="Ex: Montserrat (ou deixe em branco)">
                         </div>
                         <div class="form-group">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
                                 <label style="margin: 0;">Formatação Especial</label>
                                 <div class="switch-small" style="display: flex; align-items: center;">
                                     <label class="switch" style="width: 34px; height: 20px;">
                                         <input type="checkbox" data-bind="special.style3.inheritFormat" checked>
                                         <span class="slider round" style="border-radius: 20px;"></span>
                                     </label>
-                                    <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: 0.4rem;">Herdar Global</span>
+                                    <span
+                                        style="font-size: 0.8rem; color: var(--text-muted); margin-left: 0.4rem;">Herdar
+                                        Global</span>
                                 </div>
                             </div>
                             <div class="format-toolbar format-options" id="format-options-s3">
