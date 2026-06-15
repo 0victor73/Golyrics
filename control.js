@@ -224,6 +224,17 @@ document.getElementById('btn-delete-theme').addEventListener('click', () => {
 updateDisabledStates();
 loadThemesList();
 
+// Load saved URL
+const savedUrl = localStorage.getItem('holyrics_url');
+if (savedUrl) {
+    document.getElementById('holyrics-url').value = savedUrl;
+}
+
+// Save URL on input/change
+document.getElementById('holyrics-url').addEventListener('input', (e) => {
+    localStorage.setItem('holyrics_url', e.target.value.trim());
+});
+
 // Manual Text Update
 document.getElementById('btn-update-text').addEventListener('click', () => {
     state.text = document.getElementById('preview-text').value;
