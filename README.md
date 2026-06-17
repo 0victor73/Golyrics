@@ -19,20 +19,6 @@ A comunicação entre eles é feita através da **BroadcastChannel API** do nave
 
 ---
 
-## 📁 Estrutura do Projeto
-
-```
-GoLyrics/
-├── control.html      # Painel de controle da aplicação
-├── control.css       # Estilos do painel de controle 
-├── control.js        # Lógica do painel: estado, conexão e broadcast
-├── overlay.html      # Página do overlay (Browser Source no OBS)
-├── overlay.css       # Estilos do overlay + animações CSS
-└── overlay.js        # Lógica do overlay: renderização e animações
-```
-
----
-
 ## 🚀 Como Usar
 
 ### 1. Configurar o OBS
