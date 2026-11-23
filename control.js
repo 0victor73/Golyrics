@@ -90,7 +90,32 @@ function updateStateFromPath(path, value) {
         updateDisabledStates();
     }
     
+    saveCurrentSettings();
     broadcast();
+}
+
+function saveCurrentSettings() {
+    try {
+        localStorage.setItem('holyrics_current', JSON.stringify({
+            global: state.global,
+            animations: state.animations,
+            special: state.special
+        }));
+    } catch (e) {}
+}
+
+function restoreCurrentSettings() {
+    try {
+        const cur = JSON.parse(localStorage.getItem('holyrics_current'));
+        if (!cur) return;
+        state.global = { ...state.global, ...cur.global, box: { ...state.global.box, ...(cur.global && cur.global.box) }, margin: { ...state.global.margin, ...(cur.global && cur.global.margin) } };
+        state.animations = { ...state.animations, ...cur.animations };
+        state.special = {
+            style1: { ...state.special.style1, ...(cur.special && cur.special.style1) },
+            style2: { ...state.special.style2, ...(cur.special && cur.special.style2) },
+            style3: { ...state.special.style3, ...(cur.special && cur.special.style3) }
+        };
+    } catch (e) {}
 }
 
 function broadcast() {
@@ -197,6 +222,8 @@ document.getElementById('btn-load-theme').addEventListener('click', () => {
             state.animations = { ...state.animations, ...saved[name].animations };
             state.special = { ...state.special, ...saved[name].special };
             syncUIToState();
+            saveCurrentSettings();
+            try { localStorage.setItem('holyrics_last_theme', name); } catch (e) {}
             broadcast();
         }
     } catch (e) {
@@ -221,8 +248,14 @@ document.getElementById('btn-delete-theme').addEventListener('click', () => {
 });
 
 // Run initial UI state
-updateDisabledStates();
+restoreCurrentSettings();
+syncUIToState();
 loadThemesList();
+try {
+    const lastTheme = localStorage.getItem('holyrics_last_theme');
+    const sel = document.getElementById('theme-select');
+    if (lastTheme && [...sel.options].some(o => o.value === lastTheme)) sel.value = lastTheme;
+} catch (e) {}
 
 // Load saved URL
 const savedUrl = localStorage.getItem('holyrics_url');
@@ -259,6 +292,7 @@ btnToggle.addEventListener('change', () => {
             pollInterval = null;
         }
         statusIndicator.className = 'status-indicator disconnected';
+        setConnMessage("");
         broadcast();
     } else {
         // Connect
@@ -277,6 +311,11 @@ btnToggle.addEventListener('change', () => {
         broadcast();
     }
 });
+
+function setConnMessage(msg) {
+    const el = document.getElementById('conn-message');
+    if (el) el.textContent = msg || "";
+}
 
 function startWebSocket(url) {
     try {
@@ -334,7 +373,7 @@ function startPolling(url) {
             if (!finalUrl.searchParams.has('css_hash')) finalUrl.searchParams.append('css_hash', '0');
             finalUrl.searchParams.set('_', new Date().getTime()); // Cache-buster
         } catch (e) {
-            document.getElementById('preview-text').value = "Erro ao processar URL: " + e.message;
+            setConnMessage("Erro ao processar URL: " + e.message);
             isFetching = false;
             return;
         }
@@ -354,14 +393,15 @@ function startPolling(url) {
             .then(data => {
                 // Se o servidor retornar o arquivo Javascript ao invés do JSON
                 if (data.includes("htmlType =")) {
-                    document.getElementById('preview-text').value = "Erro: O servidor retornou JS em vez das letras.";
+                    setConnMessage("Erro: O servidor retornou JS em vez das letras.");
                 } else {
+                    setConnMessage("");
                     handleIncomingData(data);
                 }
             })
             .catch(err => {
                 console.error("Erro no Polling:", err);
-                document.getElementById('preview-text').value = "Erro de conexão: " + err.message;
+                setConnMessage("Erro de conexão: " + err.message);
             })
             .finally(() => {
                 isFetching = false;
@@ -387,9 +427,9 @@ function handleIncomingData(rawData) {
             newText = payload.content;
         }
     } catch (e) {
-        if (typeof rawData === 'string' && rawData.trim() !== '') {
-            newText = rawData;
-        }
+        // Resposta que não é JSON (ex.: página de erro/aguardando servidor): ignorar,
+        // para nunca aparecer no overlay.
+        return;
     }
 
     if (newText !== null) {

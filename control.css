@@ -132,6 +132,14 @@ textarea {
     box-shadow: 0 0 8px var(--danger);
 }
 
+.conn-message {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.75rem;
+    opacity: 0.8;
+    min-height: 1em;
+}
+
 .btn {
     padding: 0.75rem 1.5rem;
     border: none;
